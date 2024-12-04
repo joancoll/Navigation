@@ -17,6 +17,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.*
+import cat.dam.andy.navigation.ui.theme.NavigationTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,10 +32,15 @@ class MainActivity : ComponentActivity() {
 fun MyApp() {
     val navController = rememberNavController()
     val selectedButton = remember { mutableIntStateOf(1) }
-    Column(modifier = Modifier.systemBarsPadding()
-        .fillMaxSize()) {
-        TopMenu(navController = navController, selectedButton = selectedButton)
-        NavigationHost(navController = navController)
+    NavigationTheme {
+        Column(
+            modifier = Modifier
+                .systemBarsPadding()
+                .fillMaxSize()
+        ) {
+            TopMenu(navController = navController, selectedButton = selectedButton)
+            NavigationHost(navController = navController)
+        }
     }
 }
 

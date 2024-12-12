@@ -10,14 +10,17 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableIntStateOf
-import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.*
 import cat.dam.andy.navigation.ui.theme.NavigationTheme
+
+const val LAYOUT_COUNT = 4 // Number of layouts
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,7 +34,7 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun MyApp() {
     val navController = rememberNavController()
-    val selectedButton = remember { mutableIntStateOf(1) }
+    val selectedButton = rememberSaveable { mutableIntStateOf(1) }
     NavigationTheme {
         Column(
             modifier = Modifier
@@ -53,7 +56,7 @@ fun TopMenu(navController: NavHostController, selectedButton: MutableState<Int>)
             .padding(8.dp),
         horizontalArrangement = Arrangement.SpaceAround
     ) {
-        (1..4).forEach { index ->
+        (1..LAYOUT_COUNT).forEach { index ->
             Button(
                 onClick = {
                     navController.navigate("layout$index") {
@@ -129,5 +132,13 @@ fun Layout4() {
         contentAlignment = Alignment.Center
     ) {
         Text("Layout 4", color = Color.Black)
+    }
+}
+
+@Composable
+@Preview(showBackground = true)
+fun PreviewLayout() {
+    NavigationTheme {
+        Layout1()
     }
 }

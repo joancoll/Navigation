@@ -16,9 +16,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.rememberNavController
 import androidx.navigation.NavHostController
-import androidx.navigation.compose.*
-import cat.dam.andy.navigation.ui.theme.NavigationTheme
+import androidx.navigation.compose.composable
+import cat.dam.andy.navigation.ui.theme.AppTheme
 
 const val LAYOUT_COUNT = 4 // Number of layouts
 
@@ -35,7 +37,7 @@ class MainActivity : ComponentActivity() {
 fun MyApp() {
     val navController = rememberNavController()
     val selectedButton = rememberSaveable { mutableIntStateOf(1) }
-    NavigationTheme {
+    AppTheme {
         Column(
             modifier = Modifier
                 .systemBarsPadding()
@@ -138,7 +140,7 @@ fun Layout4() {
 @Composable
 @Preview(showBackground = true)
 fun PreviewLayout() {
-    NavigationTheme {
+    AppTheme {
         Layout1()
     }
 }

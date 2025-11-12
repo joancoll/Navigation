@@ -35,7 +35,7 @@ fun TopMenu(navController: NavHostController, selectedButton: MutableState<Int>)
                 ),
                 shape = RoundedCornerShape(50)
             ) {
-                Text("Layout$index")
+                Text("L$index")
             }
         }
     }
